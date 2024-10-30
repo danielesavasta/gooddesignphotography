@@ -1,0 +1,119 @@
+//@use "sass:map"
+
+@font-face 
+  font-family: "Absans"
+  src: url("fonts/Absans-Regular.woff2") format("woff2")
+
+
+
+*, *:before, *:after
+  box-sizing: border-box
+
+html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video
+  margin: 0
+  padding: 0
+  border: 0
+  font-size: 100%
+  font: inherit
+  vertical-align: baseline
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  text-size-adjust: none
+
+footer, header, nav, section, main
+  display: block
+
+
+
+ol, ul
+  list-style: none
+
+blockquote, q
+  quotes: none
+
+blockquote:before, blockquote:after, q:before, q:after
+  content: ''
+  content: none
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+input
+  -webkit-appearance: none
+  border-radius: 0
+
+$dark: #181C14
+$heavy: #3C3D37
+$mid: #48525C 
+$light: #697565
+$bright: #ECDFCC
+
+body
+  margin: 1em
+  line-height: 1
+  background: $dark
+  color: $bright
+  font: 2em/1.3em "Absans", serif
+  
+header
+  position: fixed
+  z-index: 0
+  top: .5em
+
+h1
+  font-size: 5em
+  line-height: 1.2em
+
+h2
+  font-size: 1.2  5em
+  line-height: 1.05em
+  text-transform: uppercase
+  letter-spacing: 5
+  word-spacing: 25
+
+img
+  width: 5em
+  background-color: transparent
+  box-shadow: 1em 1em 1em rgba(0, 0, 0, 0.25)
+  
+figure
+  background-color: transparent
+  transition: all .5s
+  transform-origin: center
+
+figure:hover
+  transform: scale(2.0)
+  z-index: 100
+
+#gallery
+  margin: 5em 2.5em
+  display: flex
+  align-content: center
+  align-items: center
+  position: relative
+  z-index: 10
+  width: 4000px
+
+#gallery figure
+  width: .35em
+
+#datacard
+  margin-top:30em
+  font-size: .6em
+  line-height: 1.4em
+
+dl
+  display: grid
+  grid-template-columns: auto auto
+
+dt, dd
+  display: inline-block
+
+dt
+  color: $light
+  text-transform: uppercase
+  font-size: .8em
+  text-align: right
+dd
+  max-width: 45em

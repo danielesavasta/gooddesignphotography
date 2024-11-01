@@ -1,6 +1,6 @@
 <main>
     <header><h1>Studio Photographs</h1>
-    <h2>historical — geographical — visual dialogue</h2></header>
+    <h2><a onclick="historical()">historical</a> — <a onclick="geographical()">geographical</a> — <a onclick="visual()">visual dialogue</a></h2></header>
     <section id="gallery">
     {{#each collection}}
       <figure id="{{this.id}}" onmouseover="hover(this)">
@@ -11,109 +11,6 @@
     <section id="datacard"></section>
 </main>
 <script>
-  window.onload = function () { 
-    let gallery=document.querySelector("#gallery");
-
-    wave(gallery);
-    ab(gallery);
-
-    triggerIfInactive()
-   }
-  
-
-function ab(gallery){
-  let i=0, len=gallery.childElementCount;
-  while (i<len) {
-    let node=gallery.getElementsByTagName("figure")[i];
-    node.style.position= "absolute";
-    i++
-  }
-}
-var shaking=false;
-var shift=getRandomInt(180);
-
-function hover(x){
-  //console.log("hover!")
-  let id=x.id;
-
-  console.log(id)
-  loadCard(id)
-}
-
-function loadCard(id){
-
-  let container=document.querySelector("#datacard");
-  //.innerHTML=db[id].html;
-  let content="<dl>";
-  let item=db.find(item => item.id  === id);
-  console.log(item)
-
-  for(let key in item){
-    if(key!="_id")
-    content+=`<dt>${key}</dt><dd> ${item[key]}</dd>`;
-  }
-  container.innerHTML=content+"</dl>";
-
-}
-
-function shake(){
-  console.log("shake!")
-  shaking=true;
-  shift=getRandomInt(180)
-}
-
-function wave(gallery) {
-  let i=0, len=gallery.childElementCount;
-  console.log(shift)
-  while (i<len) {
-    let node=gallery.getElementsByTagName("figure")[i];
-    let rect = node.getBoundingClientRect();
-    let amplitude=160;
-    let frequency=20;
-    let height=rect.y;
-    let y = height/2 + amplitude * Math.sin((i+shift)/frequency);
-    node.style.left= rect.x + globalThis.scrollX+"px";
-    node.style.top= y+"px";
-    i++;
-  }
-}
-
-function setup(){}
-function draw(){
-  if(shaking){
-  let i=0, len=gallery.childElementCount;
-  console.log(shift)
-  while (i<len) {
-    let node=gallery.getElementsByTagName("figure")[i];
-    let rect = node.getBoundingClientRect();
-    let amplitude=160;
-    let frequency=20;
-    let height=rect.y;
-    let y = height/2 + amplitude * Math.sin((i+shift)/frequency);
-    node.style.top= y+"px";
-    i++;
-  }
-  shift++;
-  }
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-
-let time;
-function triggerIfInactive() {
-    resetTimer();
-    let events = ['mousedown', 'mousemove', 'keydown', 'scroll', 'mousewheel', 'touchstart']; // You can add/remove events as you need
-    events.forEach(ev => document.addEventListener(ev, resetTimer, true));
-};
-
-function resetTimer() {
-  shaking=false;
-  clearTimeout(time); //Resets previous timer
-  time = setTimeout(shake, 2000) // Sets new timer after one minute
-}
-    
 const db={{{json collection}}};
 </script>
+  <script src="js/script.js"></script>

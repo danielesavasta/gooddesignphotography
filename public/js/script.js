@@ -1,25 +1,32 @@
 window.onload = function () {
   let gallery = document.querySelector("#gallery");
     
-  visual(gallery);
+  visual();
   //ab(gallery);
 
   triggerIfInactive();
 };
 
-function visual(gallery){
-  resetDiv(gallery)
+function visual(){
+  let gallery = document.querySelector("#gallery");
+  resetDiv()
   wave(gallery);
   ab(gallery);
 }
 
 function resetDiv(gallery){
     document.querySelector('body').classList.remove("mapbg");//style.backgroundImage = 'none';
-    removeDivs(gallery)
+    removeDivs()
 }
-function removeDivs(container) {
+function removeDivs() {
+  let container = document.querySelector("#gallery");
+
    const divs = container.querySelectorAll('div');
+   const h2s = container.querySelectorAll('h2');
+   h2s.forEach(h2 => {
+    h2.remove();
     
+  });
     divs.forEach(div => {
       // Move all child nodes of the div to the parent of the div
       while (div.firstChild) {
@@ -28,6 +35,7 @@ function removeDivs(container) {
       // Remove the empty div
       container.removeChild(div);
     });
+    
 }
 
 
@@ -59,7 +67,10 @@ function loadCard(id) {
   console.log(item);
 
   for (let key in item) {
-    if (key != "_id") content += `<dt>${key}</dt><dd> ${item[key]}</dd>`;
+    if (key != "_id" && key != "person/subject"&& key != "detail" && key != "ongoing notes"
+      && key != "building (name)" && key != "tags" && key != "format" && key != "material" && key != "field18"
+       && key != "field19"  && key != "field20"  && key != "field21" && key != "front" && key != "back" && key != "similarity_id" && key != "priority"
+     ) content += `<dt>${key}</dt><dd> ${item[key]}</dd>`;
   }
   container.innerHTML = content + "</dl>";
 }
@@ -77,7 +88,7 @@ function wave(gallery) {
   while (i < len) {
     let node = gallery.getElementsByTagName("figure")[i];
     let rect = node.getBoundingClientRect();
-    let amplitude = 160;
+    let amplitude = 80;
     let frequency = 20;
     let height = rect.y;
     let y = height / 2 + amplitude * Math.sin((i + shift) / frequency);
@@ -96,7 +107,7 @@ function draw() {
     while (i < len) {
       let node = gallery.getElementsByTagName("figure")[i];
       let rect = node.getBoundingClientRect();
-      let amplitude = 160;
+      let amplitude = 80;
       let frequency = 20;
       let height = rect.y;
       let y = height / 2 + amplitude * Math.sin((i + shift) / frequency);
@@ -164,9 +175,11 @@ function geographical() {
     document.querySelector('body').classList.add("mapbg");
   // Group elements by period
     sortedb.forEach(entry => {
-    const { country, id } = entry;
+    var { country, id } = entry;
     const element = document.getElementById(id);
     if (element) {
+      if(country==`Bulgaristan ?
+Yugoslavya ?`) country='Bulgaristan'
       element.style.cssText = ''; // Clear inline styles
         
       if (!groupedElements[country]) {
@@ -183,3 +196,4 @@ function geographical() {
   });
   }
   
+  document.oncontextmenu = document.body.oncontextmenu = function() {return false;}

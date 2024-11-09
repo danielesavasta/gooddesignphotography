@@ -8,7 +8,7 @@ module.exports = async function (fastify, opts) {
       return reply.view("layout/main.hbs", {collection:result});
     })
 
-    const dbPhotos ='photos';
+    const dbPhotos ='photoArchive';
 function loadWorks(){
   return fastify.mongo.db.collection(dbPhotos);
 }
